@@ -1,13 +1,18 @@
+resources:
+ containers:
+   - container: server     
+     image: devopstest/server:$(Build.SourceVersion)
+
 steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'devopstest'
-    repository: 'server'
-    command: 'buildAndPush'
-    Dockerfile: 'server/dockerfile'
-    tags: $(Build.SourceVersion)
-
-- task: Docker@2
-  inputs:
-    containerRegistry: 'devopstest'
+    container: server
     command: 'start'
+
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      pwd
+      ls
