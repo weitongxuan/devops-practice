@@ -1,28 +1,16 @@
-resources:
- containers:
-  - container: app    
-    image: devopstestcr1.azurecr.io/server:latest
-    endpoint: devopstest
-jobs:
-- job: test
-  container: app  
-  steps:
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: |
-        npm i jest
-        npm i axios
-        node src/index.js&
-        npx jest server/test/all.test.js --outputFile result.json        
-      workingDirectory: '/'
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFormat: 'JUnit'
-      testResultsFiles: 'result.json'
-      searchFolder: '/'
-      testRunTitle: 'test'
-  
-
-
-  
+steps:
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: |
+      npm i jest
+      npm i axios
+      node src/index.js&
+      npx jest server/test/all.test.js --outputFile result.json        
+    workingDirectory: '/'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'result.json'
+    searchFolder: '/'
+    testRunTitle: 'test'
