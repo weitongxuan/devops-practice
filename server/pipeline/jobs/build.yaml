@@ -5,6 +5,7 @@ steps:
     repository: 'server'
     command: 'buildAndPush'
     Dockerfile: 'server/dockerfile'
+    arguments: --cache-from devopstest/server
     tags: |
       $(Build.SourceVersion)
       latest
