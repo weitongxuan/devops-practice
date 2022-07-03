@@ -5,8 +5,11 @@ resources:
   - container: app
     image: devopstestcr1.azurecr.io/server:latest
 jobs:
+- job: app
+  container: app
 - job: test
   container: node
+  dependOn: app
   steps:
   - task: Bash@3
     inputs:
