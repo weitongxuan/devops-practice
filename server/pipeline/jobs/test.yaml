@@ -14,8 +14,7 @@ jobs:
         npm i jest
         npm i axios
         node src/index.js&
-        npx jest server/test/all.test.js --outputFile result.json
-        ls data
+        npx jest server/test/all.test.js --outputFile result.json        
       workingDirectory: '/'
   - task: PublishTestResults@2
     inputs:
