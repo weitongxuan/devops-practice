@@ -1,6 +1,3 @@
-trigger: none
-pr: none
-
 steps:
 - task: Docker@2
   inputs:
