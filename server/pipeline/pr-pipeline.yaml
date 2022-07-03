@@ -25,7 +25,7 @@ jobs:
       - template: jobs/build.yaml
   - job: runTest
     displayName: Run Test
-    dependsOn: pullImage
+    dependsOn: buildImage
     container: app    
     steps:
       - template: jobs/build.yaml
