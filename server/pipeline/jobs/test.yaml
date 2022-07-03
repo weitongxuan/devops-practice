@@ -4,12 +4,6 @@ resources:
      image: devopstest/server:$(Build.SourceVersion)
 
 steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'devopstest'
-    container: server
-    command: 'start'
-
 - task: Bash@3
   inputs:
     targetType: 'inline'
