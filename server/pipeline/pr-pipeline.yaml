@@ -26,6 +26,7 @@ jobs:
   - job: runTest
     displayName: Run Test
     dependsOn: buildImage
+    condition: succeededOrFailed()
     container: app    
     steps:
       - template: jobs/build.yaml
