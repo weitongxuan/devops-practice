@@ -11,7 +11,7 @@ jobs:
       script: |
         docker run --name server -d --rm -p 8000:8000 devopstestcr1.azurecr.io/server:latest
 - job: test
-  container: node
+  container: node:latest
   dependsOn: startContainer
   steps:
   - task: Bash@3
