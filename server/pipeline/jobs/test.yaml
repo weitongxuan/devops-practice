@@ -1,8 +1,14 @@
 resources:
  containers:
    - container: server     
-     image: devopstest/server:$(Build.SourceVersion)
+     image: devopstestcr1.azurecr.io/server:$(Build.SourceVersion)
 
+- task: Docker@2
+  inputs:
+    containerRegistry: 'devopstest'
+    command: 'start'
+    container: 'server'
+    
 steps:
 - task: Bash@3
   inputs:
