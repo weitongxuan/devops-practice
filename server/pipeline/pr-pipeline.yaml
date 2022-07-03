@@ -29,4 +29,4 @@ jobs:
     condition: succeededOrFailed()
     container: app    
     steps:
-      - template: jobs/build.yaml
+      - template: jobs/test.yaml
