@@ -19,8 +19,8 @@ jobs:
       targetType: 'inline'
       script: |
         npm i jest
+        npm i axios
         npx jest server/test/all.test.js --outputFile result.json
-        docker stop server
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
