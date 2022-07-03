@@ -8,5 +8,6 @@ steps:
   inputs:
     targetType: 'inline'
     script: |
+      docker ps
       pwd
       ls
