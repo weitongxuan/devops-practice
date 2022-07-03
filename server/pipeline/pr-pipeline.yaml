@@ -1,3 +1,8 @@
+resources:
+ containers:
+  - container: app    
+    image: devopstestcr1.azurecr.io/server:latest
+    endpoint: devopstest
 trigger: none
 jobs:
   - job: testImage
@@ -16,7 +21,7 @@ jobs:
     condition: failed()
     steps:
       - template: jobs/build.yaml
-  - job: runTest
-    dependsOn: pullImage
+  - job: test
+    container: app
     steps:
-      - template: jobs/test.yaml
+      - template: jobs/build.yaml
