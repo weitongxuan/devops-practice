@@ -1,12 +1,8 @@
 resources:
  containers:
-  - container: app
-    type: ACR
+  - container: app    
     image: devopstestcr1.azurecr.io/server:latest
-    azureSubscription: Microsoft Azure Sponsorship
-    resourceGroup: rg-devops-dev-001
-    registry: devopstestcr1
-    repository: server
+    endpoint: devopstest
 jobs:
 - job: test
   container: app  
