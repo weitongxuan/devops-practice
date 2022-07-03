@@ -18,8 +18,8 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
-        npm i -g jest
-        jest server/test/all.test.js --outputFile result.json
+        npm i jest
+        npx jest server/test/all.test.js --outputFile result.json
         docker stop server
   - task: PublishTestResults@2
     inputs:
