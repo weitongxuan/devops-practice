@@ -1,0 +1,8 @@
+steps:
+- task: Docker@2
+  inputs:
+    containerRegistry: 'devopstest'
+    repository: 'server'
+    command: 'buildAndPush'
+    Dockerfile: 'server/dockerfile'
+    tags: $(Build.SourceVersion)

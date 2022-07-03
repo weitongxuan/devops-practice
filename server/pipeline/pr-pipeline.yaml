@@ -1,0 +1,10 @@
+trigger: none
+pr:
+  branches:
+    include:
+      - "*"
+  paths:
+    exclude:
+      - /**/*.md
+      - .github/*
+      - .github/**/*
