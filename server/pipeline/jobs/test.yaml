@@ -3,6 +3,7 @@ resources:
   - container: app    
     image: devopstestcr1.azurecr.io/server:latest
     endpoint: devopstest
+    options: --command node src/index.js
 jobs:
 - job: test
   container: app  
@@ -10,7 +11,8 @@ jobs:
   - task: Bash@3
     inputs:
       targetType: 'inline'
-      script: |      
+      script: |
+        
         npm i jest
         npm i axios
         npx jest server/test/all.test.js --outputFile result.json
