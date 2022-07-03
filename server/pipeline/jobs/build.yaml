@@ -2,10 +2,17 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'devopstest'
+    command: 'login'
+- task: Bash@3
+  inputs:
+    targetType: 'inline'
+    script: 'docker pull devopstest/server:latest'
+- task: Docker@2
+  inputs:
+    containerRegistry: 'devopstest'
     repository: 'server'
     command: 'buildAndPush'
     Dockerfile: 'server/dockerfile'
-    arguments: --cache-from devopstest/server
     tags: |
       $(Build.SourceVersion)
       latest
