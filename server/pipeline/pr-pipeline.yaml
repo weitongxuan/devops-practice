@@ -1,9 +1,12 @@
+trigger: none
+pr:
+  
 resources:
  containers:
   - container: app    
-    image: devopstestcr1.azurecr.io/server:latest
+    image: devopstestcr1.azurecr.io/$(Build.SourceVersion)
     endpoint: devopstest
-trigger: none
+
 jobs:
   - job: testImage
     displayName: Check Image Exists
@@ -15,7 +18,7 @@ jobs:
     - task: Bash@3
       inputs:
         targetType: 'inline'
-        script: 'docker pull devopstestcr1.azurecr.io/server:latest'
+        script: 'docker pull devopstestcr1.azurecr.io/$(Build.SourceVersion)'
       continueOnError: true  
   - job: buildImage  
     displayName: Build Image
