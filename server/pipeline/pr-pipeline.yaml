@@ -6,6 +6,7 @@ resources:
 trigger: none
 jobs:
   - job: testImage
+    displayName: Check Image Exists
     steps:
     - task: Docker@2
       inputs:
@@ -16,12 +17,14 @@ jobs:
         targetType: 'inline'
         script: 'docker pull devopstestcr1.azurecr.io/server:latest'
       continueOnError: true  
-  - job: pullImage
+  - job: buildImage  
+    displayName: Build Image
     dependsOn: testImage
     condition: failed()
     steps:
       - template: jobs/build.yaml
-  - job: test
+  - job: runTest
+    displayName: Run Test
     dependsOn: pullImage
     container: app    
     steps:
