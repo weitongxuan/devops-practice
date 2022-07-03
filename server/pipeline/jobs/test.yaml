@@ -9,7 +9,7 @@ jobs:
   container: app
 - job: test
   container: node
-  dependOn: app
+  dependsOn: app
   steps:
   - task: Bash@3
     inputs:
