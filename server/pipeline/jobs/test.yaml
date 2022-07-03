@@ -1,3 +1,8 @@
+resources:
+ containers:
+   - container: node
+     image: node:latest
+     options: --network	host
 jobs:
 - job: startContainer
   steps:
@@ -11,7 +16,7 @@ jobs:
       script: |
         docker run --name server -d --rm -p 8000:8000 devopstestcr1.azurecr.io/server:latest
 - job: test
-  container: node:latest
+  container: node  
   dependsOn: startContainer
   steps:
   - task: Bash@3
