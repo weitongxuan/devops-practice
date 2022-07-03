@@ -8,3 +8,7 @@ steps:
   inputs:
     targetType: 'inline'
     script: 'docker pull devopstestcr1.azurecr.io/server:latest'
+  continueOnError: true  
+- template: ../jobs/build.yaml
+  condition: always()
+  
