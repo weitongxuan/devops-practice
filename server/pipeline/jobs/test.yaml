@@ -3,7 +3,6 @@ resources:
   - container: app    
     image: devopstestcr1.azurecr.io/server:latest
     endpoint: devopstest
-    options: --command 
 jobs:
 - job: test
   container: app  
