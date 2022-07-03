@@ -14,14 +14,14 @@ jobs:
         npm i jest
         npm i axios
         node src/index.js&
-        npx jest server/test/all.test.js --outputFile /data/result.json
+        npx jest server/test/all.test.js --outputFile result.json
         ls data
       workingDirectory: '/'
   - task: PublishTestResults@2
     inputs:
       testResultsFormat: 'JUnit'
       testResultsFiles: 'result.json'
-      searchFolder: '/data/'
+      searchFolder: '/'
       testRunTitle: 'test'
   
 
