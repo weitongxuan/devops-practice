@@ -1,18 +1,12 @@
+resources:
+ containers:
+  - container: node
+    image: node:latest
+  - container: app
+    image: devopstestcr1.azurecr.io/server:latest
 jobs:
-- job: startContainer
-  steps:
-  - task: Docker@2
-    inputs:
-      containerRegistry: 'devopstest'
-      command: 'login'
-  - task: Bash@3
-    inputs:
-      targetType: 'inline'
-      script: |
-        docker run --name server -d --rm -p 8000:8000 devopstestcr1.azurecr.io/server:latest
 - job: test
-  container: node:latest
-  dependsOn: startContainer
+  container: node
   steps:
   - task: Bash@3
     inputs:
