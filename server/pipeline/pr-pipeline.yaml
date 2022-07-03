@@ -1,14 +1,22 @@
 trigger: none
-steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'devopstest'
-    command: 'login'
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: 'docker pull devopstestcr1.azurecr.io/server:latest'
-  continueOnError: true  
-- template: ../jobs/build.yaml
-  condition: always()
-  
+jobs:
+  - job: testImage
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'devopstest'
+        command: 'login'
+    - task: Bash@3
+      inputs:
+        targetType: 'inline'
+        script: 'docker pull devopstestcr1.azurecr.io/server:latest'
+      continueOnError: true  
+  - job: pullImage
+    dependsOn: testImage
+    condition: failed()
+    steps:
+      - template: jobs/build.yaml
+  - job: runTest
+    dependsOn: pullImage
+    steps:
+      - template: jobs/test.yaml
