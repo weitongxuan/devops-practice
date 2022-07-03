@@ -3,7 +3,7 @@ const express = require("express");
 const app = express();
 const port = 8000;
 
-app.get("/:name", (req, res) => {
+app.get("/:name1", (req, res) => {
   res.send(`hello ${req.params.name}`);
 });
 
