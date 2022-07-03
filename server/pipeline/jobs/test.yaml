@@ -18,6 +18,7 @@ jobs:
     inputs:
       targetType: 'inline'
       script: |
+        docker ps
         npm i jest
         npm i axios
         npx jest server/test/all.test.js --outputFile result.json
