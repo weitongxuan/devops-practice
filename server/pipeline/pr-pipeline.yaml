@@ -1,9 +1,15 @@
+trigger: none
+pr:
+ branches:
+  include:
+    - master
+   
 resources:
  containers:
   - container: app    
     image: devopstestcr1.azurecr.io/server:latest
     endpoint: devopstest
-trigger: none
+
 jobs:
   - job: testImage
     displayName: Check Image Exists
