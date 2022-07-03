@@ -1,20 +1,26 @@
-resources:
- containers:
-   - container: server     
-     image: devopstestcr1.azurecr.io/server:$(Build.SourceVersion)
+jobs:
+- job: startContainer
+  steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        docker run -n server -d --rm -p 8000:8000 devopstestcr1.azurecr.io/server:$(Build.SourceVersion)
+- job: test
+  container:  node
+  steps:
+  - task: Bash@3
+    inputs:
+      targetType: 'inline'
+      script: |
+        npm i -g jest
+        jest server/test/all.test.js --outputFile result.json
+        docker stop server
+  - task: PublishTestResults@2
+    inputs:
+      testResultsFormat: 'JUnit'
+      testResultsFiles: '**/result.json'
+      testRunTitle: 'test'
 
 
-    
-steps:
-- task: Docker@2
-  inputs:
-    containerRegistry: 'devopstest'
-    command: 'start'
-    container: 'server'
-- task: Bash@3
-  inputs:
-    targetType: 'inline'
-    script: |
-      docker ps
-      pwd
-      ls
+  
